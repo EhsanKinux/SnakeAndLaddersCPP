@@ -64,3 +64,8 @@ void Dice::showDice(int n)
 	}
 	cout << dice;
 }
+
+int Dice::getValue()
+{
+	return value;
+}
