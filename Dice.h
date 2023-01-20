@@ -4,8 +4,11 @@
 using namespace std;
 class Dice
 {
+private:
+	int value;
 public:
 	void throwDice();
 	void showDice(int n);
+	int getValue();
 };
 
