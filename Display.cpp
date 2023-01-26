@@ -2,18 +2,22 @@
 #include <stdlib.h>
 #include <cstdio>
 #include <iostream>
+#include "Game.h"
+#include <vector>
 
 using namespace std;
-void Display::Start()
+void Display::Start(Game game)
 {
 	system("CLS");//clear screen
 	cout << "Welcome to the game" << endl << "[Press Enter To Start...]"<<endl;
-	getchar();
-	Display::GetBoard();
+	getchar();//wait for user input
+
+	//go to next page ->
+	GetBoard(game);
 
 }
 
-void Display::GetBoard()
+void Display::GetBoard(Game game)
 {
 	system("CLS");//clear screen
 	int rows, cols;
@@ -22,9 +26,13 @@ void Display::GetBoard()
 	cout << "Please enter the number of COLUMNS: ";
 	cin >> cols;
 	//Create a board with 1 -- rows* cols
+	game.setCordinates(rows, cols);
+	
+	//Go to next page ->
+	GetPlayerNumbers();
 }
 
-void Display::GetPlayerNumber()
+void Display::GetPlayerNumbers()
 {
 	system("CLS");//clear screen
 	int numberOfPlayers;
@@ -34,28 +42,39 @@ void Display::GetPlayerNumber()
 		cin >> numberOfPlayers;
 	} while (numberOfPlayers > 6 && numberOfPlayers < 1);
 	
-	Display::GetPlayerNames(numberOfPlayers);
+	GetPlayerNames(numberOfPlayers);
 }
 
 void Display::GetPlayerNames(int numberOfPlayers)
 {
 	system("CLS");//clear screen
+
+	vector<Player> p;
+	string playerName;
+
 	for (int i = 0; i < numberOfPlayers; i++) {
-		//create players object...
+		cout << "Please enter player no. " << i + 1 << "Name: ";
+		cin >> playerName;
+		Player player;
+		player.setName(playerName);
+		p.push_back(player);
 	}
 
 	cout << endl << "Let's Start the game..." << endl;
+	getchar();//wait for user input
+
 
 }
 
 void Display::showDiceAndPos(Player player, Dice dice)
 {
-	int diceValue = dice.getValue();
 	system("CLS");//clear screen
+	
+	int diceValue = dice.getValue();
 	printf("%d\n", diceValue);
 	dice.showDice(diceValue);
-	int prevPos = player.getCurrentPos();
-	int currentPos = prevPos + diceValue;
+	//int prevPos = player.getCurrentPos();
+	//int currentPos = prevPos + diceValue;
 	//check for ladders and snakes
 	//if(finished player) ... show finished players
 
