@@ -3,14 +3,14 @@
 #include <cstdio>
 #include <iostream>
 #include "Game.h"
-#include <vector>
+#include <queue>
 
 using namespace std;
 
 void Display::Start(Game game)
 {
 	system("CLS");//clear screen
-	cout << "Welcome to the game" << endl << "[Press Enter To Start...]"<<endl;
+	cout << "Welcome to the game" << endl << "[Press Enter To Start...]" << endl;
 	getchar();//wait for user input
 
 	//go to next page ->
@@ -28,7 +28,7 @@ void Display::GetBoard(Game game)
 	cin >> cols;
 	//Create a board with rows * cols
 	game.setCordinates(rows, cols);
-	
+
 	//Go to next page ->
 	GetPlayerNumbers();
 }
@@ -37,12 +37,12 @@ void Display::GetPlayerNumbers()
 {
 	system("CLS");//clear screen
 	int numberOfPlayers;
-	
+
 	do {
 		cout << "Please enter the number of players (Between 1 to 6): ";
 		cin >> numberOfPlayers;
 	} while (numberOfPlayers > 6 && numberOfPlayers < 1);
-	
+
 	GetPlayerNames(numberOfPlayers);
 }
 
@@ -50,7 +50,7 @@ void Display::GetPlayerNames(int numberOfPlayers)
 {
 	system("CLS");//clear screen
 
-	vector<Player> p;
+	queue<Player> Players;
 	string playerName;
 
 	for (int i = 0; i < numberOfPlayers; i++) {
@@ -58,8 +58,12 @@ void Display::GetPlayerNames(int numberOfPlayers)
 		cin >> playerName;
 		Player player;
 		player.setName(playerName);
-		p.push_back(player);
+		Players.push(player);
 	}
+
+	//TEST Datas in Queue
+	cout << Players.front().getName() << endl;
+	cout << Players.back().getName() << endl;
 
 	cout << endl << "Let's Start the game..." << endl;
 	getchar();//wait for user input
@@ -90,9 +94,10 @@ void Display::showValidationToStart(Player player, Dice dice)
 		cout << "OH NO! you can't start the game right now! Next Player's turn...";
 	}
 	else {
-		cout<<"Wow! You can start the Game Now!"<<endl;
-		//set the value of 1 to the players current position
-		cout << "Your current Position is :";//player.getCurrentPosition()
+		cout << "Wow! You can start the Game Now!" << endl;
+		//set player current position to 1
+		player.setCurrentPos(1);
+		cout << "Your current Position is : " << player.getCurrentPos();
 	}
 }
 
@@ -115,7 +120,7 @@ void Display::showDicePrize(Player player, Dice dice)
 {
 	system("CLS");//clear screen
 	cout << "WOW!!! You got a prize! so your turn again :)";
-	
+
 }
 
 
