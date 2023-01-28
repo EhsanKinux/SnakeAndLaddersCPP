@@ -101,9 +101,10 @@ bool Game::isLadderExist(int down, int up)
 
 Player Game::playerTurn(queue<Player> players , Player player)
 {
+	players = getPlayers();
+
 	player = players.front();
-	
-	//send the player to the back of the queue
+
 	players.pop();
 	players.push(player);
 
@@ -119,13 +120,16 @@ void Game::startTheGame(Game game ,int boardDimension, queue<Player> players, ma
 	Display dis;
 	Player player;
 	//continue the game until last player reach the last cell
-		player = game.playerTurn(players, player);
-		while (!players.empty()) {
-			if (player.getValidation()) {
+	
 
+		while (!players.empty()) {
+			
+			player = game.playerTurn(players, player);
+			if (player.getValidation()) {
+				cout << "You Are valid!" << endl;
 			}
 			else {
-				dis.showValidationToStart(game,player);
+				dis.showValidationToStart(game, player);
 			}
 		}
 }

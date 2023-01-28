@@ -140,12 +140,6 @@ void Display::GetSnakes(Game game)
 		game.insertSnake(pair<int, int>(snakeTail, snakeHead));
 	}
 
-	int i = 1;
-	for (auto pair : game.getSnakes()) {
-		cout << "snake no. " << i << " => Tail Position: " << pair.first << " | Head Position: " << pair.second << endl;
-		i++;
-	}
-
 	GetLadders(game);
 }
 
@@ -233,7 +227,6 @@ void Display::GetLadders(Game game)
 
 void Display::PlayerTurn(Game game)
 {
-
 }
 
 
@@ -241,19 +234,25 @@ void Display::showValidationToStart(Game game, Player player)
 {
 	Dice dice;
 	system("CLS");//clear screen
+
+	cout << "It's " << player.getName() << "'s turn :)"<<endl;
+
 	dice.throwDice();
 
+	//Player nextPlayer = game.playerTurn(game.getPlayers(), player);
+
 	if (dice.getValue() != 6) {
-		cout << "OH NO! you can't start the game right now! " << game.playerTurn(game.getPlayers(), player).getName() << "'s turn...";
+		cout << "OH NO! you can't start the game right now!"; // " << nextPlayer.getName() << "'s turn...";
 		getchar();
 	}
 	else {
-		cout << "Wow! You can start the Game Now!" << endl;
+		cout << "Wow! You have permission to start the Game! But after others turn..."; // << nextPlayer.getName() << "'s turn..." <<endl;
+		
 		//set player isValid to true
-		player.setValidation(true);
-		//set player current position to 1
-		player.setCurrentPos(1);
-		cout << "Your current Position is : " << player.getCurrentPos() <<" Next "<< game.playerTurn(game.getPlayers(), player).getName();
+		queue<Player> players= game.getPlayers();
+		players.back().setValidation(true);
+		game.setPlayers(players);
+		
 		getchar();
 	}
 }
