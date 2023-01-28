@@ -23,7 +23,7 @@ void Display::GetBoard(Game game)
 {
 	system("CLS");//clear screen
 	int rows, cols;
-	
+
 	do {
 		cout << "Please enter the number of ROWS: ";
 		cin >> rows;
@@ -38,7 +38,7 @@ void Display::GetBoard(Game game)
 			cout << "The board must contain at least 2 columns!!!" << endl;
 		}
 	} while (rows < 1 || cols < 2);
-	
+
 	//Create a board with rows * cols
 	game.setDimension(rows, cols);
 
@@ -142,7 +142,7 @@ void Display::GetSnakes(Game game)
 
 	int i = 1;
 	for (auto pair : game.getSnakes()) {
-		cout << "snake no. " << i << " => Tail Position: " << pair.first << " | Head Position: " << pair.second<<endl;
+		cout << "snake no. " << i << " => Tail Position: " << pair.first << " | Head Position: " << pair.second << endl;
 		i++;
 	}
 
@@ -227,7 +227,7 @@ void Display::GetLadders(Game game)
 	cout << "Everything's set... Let's start the game!" << endl;
 	getchar();
 
-	game.startTheGame(game ,game.getDimension(), game.getPlayers(), game.getSnakes(), game.getLadders());
+	game.startTheGame(game, game.getDimension(), game.getPlayers(), game.getSnakes(), game.getLadders());
 
 }
 
@@ -237,14 +237,14 @@ void Display::PlayerTurn(Game game)
 }
 
 
-void Display::showValidationToStart(Player player)
+void Display::showValidationToStart(Game game, Player player)
 {
 	Dice dice;
 	system("CLS");//clear screen
 	dice.throwDice();
 
 	if (dice.getValue() != 6) {
-		cout << "OH NO! you can't start the game right now! Next Player's turn...";
+		cout << "OH NO! you can't start the game right now! " << game.playerTurn(game.getPlayers(), player).getName() << "'s turn...";
 		getchar();
 	}
 	else {
@@ -253,7 +253,7 @@ void Display::showValidationToStart(Player player)
 		player.setValidation(true);
 		//set player current position to 1
 		player.setCurrentPos(1);
-		cout << "Your current Position is : " << player.getCurrentPos();
+		cout << "Your current Position is : " << player.getCurrentPos() <<" Next "<< game.playerTurn(game.getPlayers(), player).getName();
 		getchar();
 	}
 }
