@@ -22,10 +22,22 @@ void Display::GetBoard(Game game)
 {
 	system("CLS");//clear screen
 	int rows, cols;
-	cout << "Please enter the number of ROWS: ";
-	cin >> rows;
-	cout << "Please enter the number of COLUMNS: ";
-	cin >> cols;
+	
+	do {
+		cout << "Please enter the number of ROWS: ";
+		cin >> rows;
+		cout << "Please enter the number of COLUMNS: ";
+		cin >> cols;
+
+		if (rows < 1) {
+			cout << "Rows of the board can't be zero or negative!!!" << endl;
+		}
+
+		if (cols < 2) {
+			cout << "The board must contain at least 2 columns!!!" << endl;
+		}
+	} while (rows < 1 || cols < 2);
+	
 	//Create a board with rows * cols
 	game.setCordinates(rows, cols);
 
@@ -73,6 +85,8 @@ void Display::GetPlayerNames(Game game, int numberOfPlayers)
 
 void Display::GetSnakes(Game game)
 {
+	system("CLS");//clear screen
+
 	int numberOfSnakes, snakeTail, snakeHead;
 	bool isSnakeExist = false;
 
@@ -84,9 +98,13 @@ void Display::GetSnakes(Game game)
 		if (numberOfSnakes >= game.getCordinates() / 4) //if snakes limit reached
 			cout << "TOO MUCH SNAKES!!! Try Again." << endl;
 
-	} while (numberOfSnakes >= game.getCordinates() / 4);//snakes count must be less than (rows*cols) / 4
+		if (numberOfSnakes < 1) {
+			cout << ":) Where Are the snakes?! Please enter at least 1 snakes to the game!" << endl;
+		}
 
-	for (int i = 0; i < numberOfSnakes; i++) {
+	} while ((numberOfSnakes >= game.getCordinates() / 4) || numberOfSnakes < 1);//snakes count must be less than (rows*cols) / 4
+
+	for (int i = 1; i <= numberOfSnakes; i++) {
 
 		do {
 			cout << "Please Enter the tail of the snake no. " << i << " : ";
@@ -106,11 +124,11 @@ void Display::GetSnakes(Game game)
 			}
 
 			if (snakeTail < 1) {
-				cout << "!!! There is already an snake in this postitions !!! Try Again..." << endl;
+				cout << "!!! Snake tail can't be outside of the game board !!! Try Again..." << endl;
 			}
 
 			if (snakeHead < 2) {
-				cout << "!!! There is already an snake in this postitions !!! Try Again..." << endl;
+				cout << "!!! Snake head position can't be less than 2 !!! Try Again..." << endl;
 			}
 
 		} while ((snakeHead <= snakeTail) || isSnakeExist || snakeTail < 1 || snakeHead < 2);
@@ -121,7 +139,7 @@ void Display::GetSnakes(Game game)
 
 	int i = 1;
 	for (auto pair : game.getSnakes()) {
-		cout << "snake no. " << " : Tail Position: " << pair.first << " Head Position: " << pair.second<<endl;
+		cout << "snake no. " << i << " => Tail Position: " << pair.first << " | Head Position: " << pair.second<<endl;
 		i++;
 	}
 
