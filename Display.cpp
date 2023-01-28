@@ -30,10 +30,10 @@ void Display::GetBoard(Game game)
 	game.setCordinates(rows, cols);
 
 	//Go to next page ->
-	GetPlayerNumbers();
+	GetPlayerNumbers(game);
 }
 
-void Display::GetPlayerNumbers()
+void Display::GetPlayerNumbers(Game game)
 {
 	system("CLS");//clear screen
 	int numberOfPlayers;
@@ -43,14 +43,13 @@ void Display::GetPlayerNumbers()
 		cin >> numberOfPlayers;
 	} while (numberOfPlayers > 6 && numberOfPlayers < 1);
 
-	GetPlayerNames(numberOfPlayers);
+	GetPlayerNames(game, numberOfPlayers);
 }
 
-void Display::GetPlayerNames(int numberOfPlayers)
+void Display::GetPlayerNames(Game game, int numberOfPlayers)
 {
 	system("CLS");//clear screen
 
-	queue<Player> Players;
 	string playerName;
 
 	for (int i = 0; i < numberOfPlayers; i++) {
@@ -58,32 +57,84 @@ void Display::GetPlayerNames(int numberOfPlayers)
 		cin >> playerName;
 		Player player;
 		player.setName(playerName);
-		Players.push(player);
+		game.insertPlayer(player);
 	}
 
 	//TEST Datas in Queue
-	cout << Players.front().getName() << endl;
-	cout << Players.back().getName() << endl;
+	cout << game.getPlayers().front().getName() << endl;
+	cout << game.getPlayers().back().getName() << endl;
 
 	cout << endl << "Let's Start the game..." << endl;
 	getchar();//wait for user input
 
-	GetSnakes();
+	GetSnakes(game);
 
 }
 
-void Display::GetSnakes()
+void Display::GetSnakes(Game game)
 {
+	int numberOfSnakes, snakeTail, snakeHead;
+	bool isSnakeExist = false;
 
-	GetLadders();
+	do {
+
+		cout << "Please Enter number of snakes: ";
+		cin >> numberOfSnakes;
+
+		if (numberOfSnakes >= game.getCordinates() / 4) //if snakes limit reached
+			cout << "TOO MUCH SNAKES!!! Try Again." << endl;
+
+	} while (numberOfSnakes >= game.getCordinates() / 4);//snakes count must be less than (rows*cols) / 4
+
+	for (int i = 0; i < numberOfSnakes; i++) {
+
+		do {
+			cout << "Please Enter the tail of the snake no. " << i << " : ";
+			cin >> snakeTail;
+
+			cout << "Please Enter the Head of the snake no. " << i << " : ";
+			cin >> snakeHead;
+
+			isSnakeExist = game.isSnakeExist(snakeTail, snakeHead);//check for snake extistence
+
+			if (snakeHead <= snakeTail) {
+				cout << "!!! Head of the snake can't be in a lower position than it's tail !!! Try Again... " << endl;
+			}
+
+			if (isSnakeExist) {
+				cout << "!!! There is already an snake in this postitions !!! Try Again... " << endl;
+			}
+
+			if (snakeTail < 1) {
+				cout << "!!! There is already an snake in this postitions !!! Try Again..." << endl;
+			}
+
+			if (snakeHead < 2) {
+				cout << "!!! There is already an snake in this postitions !!! Try Again..." << endl;
+			}
+
+		} while ((snakeHead <= snakeTail) || isSnakeExist || snakeTail < 1 || snakeHead < 2);
+
+		//add snake to the game map
+		game.insertSnake(pair<int, int>(snakeTail, snakeHead));
+	}
+
+	int i = 1;
+	for (auto pair : game.getSnakes()) {
+		cout << "snake no. " << " : Tail Position: " << pair.first << " Head Position: " << pair.second<<endl;
+		i++;
+	}
+
+	GetLadders(game);
 }
 
-void Display::GetLadders()
+void Display::GetLadders(Game game)
 {
 }
 
-void Display::PlayerTurn(Player player)
+void Display::PlayerTurn(Game game)
 {
+
 }
 
 

@@ -9,11 +9,11 @@ class Display
 public:
 	static void Start(Game game);
 	static void GetBoard(Game game);
-	static void GetPlayerNumbers();
-	static void GetPlayerNames(int numberOfPlayers = 1);
-	static void GetSnakes();//unfinished
-	static void GetLadders();//unfinished
-	static void PlayerTurn(Player player);
+	static void GetPlayerNumbers(Game game);
+	static void GetPlayerNames(Game game, int numberOfPlayers = 1);
+	static void GetSnakes(Game game);//unfinished
+	static void GetLadders(Game game);//unfinished
+	static void PlayerTurn(Game game);
 	static void showDiceAndPos(Player player, Dice dice);
 	static void showValidationToStart(Player player ,Dice dice);
 	static void showDicePrize(Player player , Dice dice);//after congrats call showDiceAndPos
