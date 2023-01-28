@@ -8,8 +8,13 @@ void Dice::throwDice()
 {
 	/*The Time function is called because the value of seed changes with time
 	 So every time we run the program, a new set of random numbers is generated.*/
+	cout << "Press Enter to roll the dice...";
+	getchar();
+
 	srand(time(0));
 	int diceNumber = (rand()%6) + 1;//generate random dice number
+
+	setValue(diceNumber);
 
 	showDice(diceNumber);
 }
@@ -65,7 +70,14 @@ void Dice::showDice(int n)
 	cout << dice;
 }
 
+//get dice value
 int Dice::getValue()
 {
 	return value;
+}
+
+//set dice value
+void Dice::setValue(int value)
+{
+	this->value = value;
 }
