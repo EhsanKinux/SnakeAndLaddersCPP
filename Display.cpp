@@ -249,6 +249,8 @@ void Display::showValidationToStart(Player player)
 	}
 	else {
 		cout << "Wow! You can start the Game Now!" << endl;
+		//set player isValid to true
+		player.setValidation(true);
 		//set player current position to 1
 		player.setCurrentPos(1);
 		cout << "Your current Position is : " << player.getCurrentPos();
