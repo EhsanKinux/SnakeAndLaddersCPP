@@ -65,6 +65,11 @@ map<int, int> Game::getLadders()
 	return Ladders;
 }
 
+void Game::setPlayers(queue<Player> players)
+{
+	Players = players;
+}
+
 bool Game::isSnakeExist(int tail, int head)
 {
 	//check if head or tail of the snakes is exist in the key , value pair of the map
@@ -102,6 +107,8 @@ Player Game::playerTurn(queue<Player> players , Player player)
 	players.pop();
 	players.push(player);
 
+	setPlayers(players);
+
 	return player;
 }
 
@@ -118,7 +125,7 @@ void Game::startTheGame(Game game ,int boardDimension, queue<Player> players, ma
 
 			}
 			else {
-				dis.showValidationToStart(player);
+				dis.showValidationToStart(game,player);
 			}
 		}
 }

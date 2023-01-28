@@ -16,6 +16,7 @@ public:
 	queue<Player> getPlayers();
 	map<int, int> getSnakes();
 	map<int, int> getLadders();
+	void setPlayers(queue<Player> players);
 	void setDimension(int rows, int columns);
 	void insertPlayer(Player player);
 	void insertSnake(pair<int, int> snakeTailHead);
