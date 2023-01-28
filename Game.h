@@ -19,7 +19,11 @@ public:
 	void setCordinates(int rows, int columns);
 	void insertPlayer(Player player);
 	void insertSnake(pair<int, int> snakeTailHead);
+	void insertLadder(pair<int, int> ladderDownUp);
+	void showSnakesPos(map<int, int> Snakes);
+	void showLadderPos(map<int, int> Ladders);
 	bool isSnakeExist(int tail, int head);
+	bool isLadderExist(int down, int up);
 
 		//void startTheGame(vector<Player> players, int boardDimension, Dice dice, );
 };
