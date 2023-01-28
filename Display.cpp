@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Game.h"
 #include <queue>
+#include "Dice.h"
 
 using namespace std;
 
@@ -39,7 +40,7 @@ void Display::GetBoard(Game game)
 	} while (rows < 1 || cols < 2);
 	
 	//Create a board with rows * cols
-	game.setCordinates(rows, cols);
+	game.setDimension(rows, cols);
 
 	//Go to next page ->
 	GetPlayerNumbers(game);
@@ -71,12 +72,6 @@ void Display::GetPlayerNames(Game game, int numberOfPlayers)
 		player.setName(playerName);
 		game.insertPlayer(player);
 	}
-
-	//TEST Datas in Queue
-	cout << game.getPlayers().front().getName() << endl;
-	cout << game.getPlayers().back().getName() << endl;
-
-	cout << endl << "Let's Start the game..." << endl;
 	getchar();//wait for user input
 
 	GetSnakes(game);
@@ -95,14 +90,14 @@ void Display::GetSnakes(Game game)
 		cout << "Please Enter number of snakes: ";
 		cin >> numberOfSnakes;
 
-		if (numberOfSnakes >= game.getCordinates() / 4) //if snakes limit reached
+		if (numberOfSnakes >= game.getDimension() / 4) //if snakes limit reached
 			cout << "TOO MUCH SNAKES!!! Try Again." << endl;
 
 		if (numberOfSnakes < 1) {
 			cout << ":) Where Are the snakes?! Please enter at least 1 snakes to the game!" << endl;
 		}
 
-	} while ((numberOfSnakes >= game.getCordinates() / 4) || numberOfSnakes < 1);//snakes count must be less than (rows*cols) / 4
+	} while ((numberOfSnakes >= game.getDimension() / 4) || numberOfSnakes < 1);//snakes count must be less than (rows*cols) / 4
 
 	for (int i = 1; i <= numberOfSnakes; i++) {
 
@@ -131,15 +126,15 @@ void Display::GetSnakes(Game game)
 				cout << "!!! Snake head position can't be less than 2 !!! Try Again..." << endl;
 			}
 
-			if (snakeTail > game.getCordinates()) {
+			if (snakeTail > game.getDimension()) {
 				cout << "!!! Snake tail position can't be bigger than game board !!! Try Again..." << endl;
 			}
 
-			if (snakeHead > game.getCordinates()) {
+			if (snakeHead > game.getDimension()) {
 				cout << "!!! Snake head position can't be bigger than game board !!! Try Again..." << endl;
 			}
 
-		} while ((snakeHead <= snakeTail) || isSnakeExist || snakeTail < 1 || snakeHead < 2 || (snakeTail > game.getCordinates() || snakeHead > game.getCordinates()));
+		} while ((snakeHead <= snakeTail) || isSnakeExist || snakeTail < 1 || snakeHead < 2 || (snakeTail > game.getDimension() || snakeHead > game.getDimension()));
 
 		//add snake to the game map
 		game.insertSnake(pair<int, int>(snakeTail, snakeHead));
@@ -168,14 +163,14 @@ void Display::GetLadders(Game game)
 		cout << "Please Enter number of Ladders: ";
 		cin >> numberOfLadders;
 
-		if (numberOfLadders >= game.getCordinates() / 4) //if snakes limit reached
+		if (numberOfLadders >= game.getDimension() / 4) //if snakes limit reached
 			cout << "TOO MUCH Ladders!!! Try Again." << endl;
 
 		if (numberOfLadders < 1) {
 			cout << ":) Where Are the ladders?! Please enter at least 1 ladders to the game!" << endl;
 		}
 
-	} while ((numberOfLadders >= game.getCordinates() / 4) || numberOfLadders < 1);//Ladder count must be less than (rows*cols) / 4
+	} while ((numberOfLadders >= game.getDimension() / 4) || numberOfLadders < 1);//Ladder count must be less than (rows*cols) / 4
 
 	for (int i = 1; i <= numberOfLadders; i++) {
 
@@ -209,15 +204,15 @@ void Display::GetLadders(Game game)
 				cout << "!!! ladder head position can't be less than 2 !!! Try Again..." << endl;
 			}
 
-			if (ladderDown > game.getCordinates()) {
+			if (ladderDown > game.getDimension()) {
 				cout << "!!! ladder down position can't be bigger than game board !!! Try Again..." << endl;
 			}
 
-			if (ladderUp > game.getCordinates()) {
+			if (ladderUp > game.getDimension()) {
 				cout << "!!! ladder Up position can't be bigger than game board !!! Try Again..." << endl;
 			}
 
-		} while ((ladderUp <= ladderDown) || isSnakeExist || isLadderExist || ladderDown < 1 || ladderUp < 2 || (ladderDown > game.getCordinates() || ladderUp > game.getCordinates()));
+		} while ((ladderUp <= ladderDown) || isSnakeExist || isLadderExist || ladderDown < 1 || ladderUp < 2 || (ladderDown > game.getDimension() || ladderUp > game.getDimension()));
 
 		//add ladder to the game map
 		game.insertLadder(pair<int, int>(ladderDown, ladderUp));
@@ -229,6 +224,10 @@ void Display::GetLadders(Game game)
 		i++;
 	}
 
+	cout << "Everything's set... Let's start the game!" << endl;
+	getchar();
+
+	game.startTheGame(game ,game.getDimension(), game.getPlayers(), game.getSnakes(), game.getLadders());
 
 }
 
@@ -238,17 +237,22 @@ void Display::PlayerTurn(Game game)
 }
 
 
-void Display::showValidationToStart(Player player, Dice dice)
+void Display::showValidationToStart(Player player)
 {
+	Dice dice;
 	system("CLS");//clear screen
+	dice.throwDice();
+
 	if (dice.getValue() != 6) {
 		cout << "OH NO! you can't start the game right now! Next Player's turn...";
+		getchar();
 	}
 	else {
 		cout << "Wow! You can start the Game Now!" << endl;
 		//set player current position to 1
 		player.setCurrentPos(1);
 		cout << "Your current Position is : " << player.getCurrentPos();
+		getchar();
 	}
 }
 
