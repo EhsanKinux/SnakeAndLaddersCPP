@@ -131,7 +131,15 @@ void Display::GetSnakes(Game game)
 				cout << "!!! Snake head position can't be less than 2 !!! Try Again..." << endl;
 			}
 
-		} while ((snakeHead <= snakeTail) || isSnakeExist || snakeTail < 1 || snakeHead < 2);
+			if (snakeTail > game.getCordinates()) {
+				cout << "!!! Snake tail position can't be bigger than game board !!! Try Again..." << endl;
+			}
+
+			if (snakeHead > game.getCordinates()) {
+				cout << "!!! Snake head position can't be bigger than game board !!! Try Again..." << endl;
+			}
+
+		} while ((snakeHead <= snakeTail) || isSnakeExist || snakeTail < 1 || snakeHead < 2 || (snakeTail > game.getCordinates() || snakeHead > game.getCordinates()));
 
 		//add snake to the game map
 		game.insertSnake(pair<int, int>(snakeTail, snakeHead));
@@ -148,6 +156,80 @@ void Display::GetSnakes(Game game)
 
 void Display::GetLadders(Game game)
 {
+	system("CLS");//clear screen
+
+	int numberOfLadders, ladderDown, ladderUp;
+	bool isLadderExist = false, isSnakeExist = false;
+
+	game.showSnakesPos(game.getSnakes());
+
+	do {
+
+		cout << "Please Enter number of Ladders: ";
+		cin >> numberOfLadders;
+
+		if (numberOfLadders >= game.getCordinates() / 4) //if snakes limit reached
+			cout << "TOO MUCH Ladders!!! Try Again." << endl;
+
+		if (numberOfLadders < 1) {
+			cout << ":) Where Are the ladders?! Please enter at least 1 ladders to the game!" << endl;
+		}
+
+	} while ((numberOfLadders >= game.getCordinates() / 4) || numberOfLadders < 1);//Ladder count must be less than (rows*cols) / 4
+
+	for (int i = 1; i <= numberOfLadders; i++) {
+
+		do {
+			cout << "Please Enter the tail of the ladder no. " << i << " : ";
+			cin >> ladderDown;
+
+			cout << "Please Enter the Head of the ladder no. " << i << " : ";
+			cin >> ladderUp;
+
+			isSnakeExist = game.isSnakeExist(ladderDown, ladderUp);//check for snake extistence
+			isLadderExist = game.isLadderExist(ladderDown, ladderUp);//check for ladder extistence
+
+			if (ladderUp <= ladderDown) {
+				cout << "!!! Head of the ladder can't be in a lower position than it's tail !!! Try Again... " << endl;
+			}
+
+			if (isSnakeExist) {
+				cout << "!!! There is already an Snake in this postitions !!! Try Again... " << endl;
+			}
+
+			if (isLadderExist) {
+				cout << "!!! There is already a ladder in this postitions !!! Try Again... " << endl;
+			}
+
+			if (ladderDown < 1) {
+				cout << "!!! ladder tail can't be outside of the game board !!! Try Again..." << endl;
+			}
+
+			if (ladderUp < 2) {
+				cout << "!!! ladder head position can't be less than 2 !!! Try Again..." << endl;
+			}
+
+			if (ladderDown > game.getCordinates()) {
+				cout << "!!! ladder down position can't be bigger than game board !!! Try Again..." << endl;
+			}
+
+			if (ladderUp > game.getCordinates()) {
+				cout << "!!! ladder Up position can't be bigger than game board !!! Try Again..." << endl;
+			}
+
+		} while ((ladderUp <= ladderDown) || isSnakeExist || isLadderExist || ladderDown < 1 || ladderUp < 2 || (ladderDown > game.getCordinates() || ladderUp > game.getCordinates()));
+
+		//add ladder to the game map
+		game.insertLadder(pair<int, int>(ladderDown, ladderUp));
+	}
+
+	int i = 1;
+	for (auto pair : game.getLadders()) {
+		cout << "Ladder no. " << i << " => Tail Position: " << pair.first << " | Head Position: " << pair.second << endl;
+		i++;
+	}
+
+
 }
 
 void Display::PlayerTurn(Game game)
