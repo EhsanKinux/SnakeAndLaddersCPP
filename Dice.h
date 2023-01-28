@@ -10,5 +10,6 @@ public:
 	void throwDice();
 	void showDice(int n);
 	int getValue();
+	void setValue(int value);
 };
 

@@ -1,18 +1,18 @@
-#include "Game.h"
 #include <iostream>
-
+#include "Game.h"
+#include "Display.h"
 
 using namespace std;
 Game::Game()
 {
 }
 
-int Game::getCordinates()
+int Game::getDimension()
 {
 	return boardLength;
 }
 
-void Game::setCordinates(int rows, int columns)
+void Game::setDimension(int rows, int columns)
 {
 	boardLength = rows * columns;
 }
@@ -92,4 +92,33 @@ bool Game::isLadderExist(int down, int up)
 
 	return false;
 
+}
+
+Player Game::playerTurn(queue<Player> players , Player player)
+{
+	player = players.front();
+	
+	//send the player to the back of the queue
+	players.pop();
+	players.push(player);
+
+	return player;
+}
+
+void Game::startTheGame(Game game ,int boardDimension, queue<Player> players, map<int, int> snakes, map<int, int> ladders)
+{
+	system("CLS");//clear screen
+
+	Display dis;
+	Player player;
+	//continue the game until last player reach the last cell
+		player = game.playerTurn(players, player);
+		while (!players.empty()) {
+			if (player.getValidation()) {
+
+			}
+			else {
+				dis.showValidationToStart(player);
+			}
+		}
 }
