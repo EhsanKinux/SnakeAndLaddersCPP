@@ -25,8 +25,9 @@ public:
 	void showLadderPos(map<int, int> Ladders);
 	bool isSnakeExist(int tail, int head);
 	bool isLadderExist(int down, int up);
-	Player playerTurn(queue<Player> &players , Player &player);
+	Player playerTurn(queue<Player>& players);
+	void setNextPlayer(queue<Player> &players , Player &player);
 
-	void startTheGame(Game game, int boardDimension, queue<Player> players, map<int, int> snakes, map<int, int> ladders);
+	void startTheGame(Game game);
 };
 

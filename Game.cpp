@@ -67,7 +67,7 @@ map<int, int> Game::getLadders()
 
 void Game::setPlayers(queue<Player> &players)
 {
-	this->Players = players;
+	Players = players;
 }
 
 bool Game::isSnakeExist(int tail, int head)
@@ -99,32 +99,39 @@ bool Game::isLadderExist(int down, int up)
 
 }
 
-Player Game::playerTurn(queue<Player> &players , Player &player)
+Player Game::playerTurn(queue<Player> &players)
+{
+	return players.front(); //front player in the queue
+}
+
+void Game::setNextPlayer(queue<Player>& players, Player& player)
 {
 	players = getPlayers();
-
-	player = players.front();
 
 	players.pop();
 	players.push(player);
 
 	setPlayers(players);
-
-	return player;
 }
 
-void Game::startTheGame(Game game ,int boardDimension, queue<Player> players, map<int, int> snakes, map<int, int> ladders)
+
+
+void Game::startTheGame(Game game)
 {
 	system("CLS");//clear screen
 
 	Display dis;
 	Player player;
+	queue<Player> players = game.getPlayers();
+		 
+
 	//continue the game until last player reach the last cell
 	
 
 		while (!players.empty()) {
 			
-			player = game.playerTurn(players, player);
+			players = game.getPlayers();
+			player = playerTurn(players);
 			if (player.getValidation()) {
 				cout << "You Are valid!" << endl;
 			}
@@ -132,5 +139,7 @@ void Game::startTheGame(Game game ,int boardDimension, queue<Player> players, ma
 				dis.showValidationToStart(game, players, player);
 				game.setPlayers(players);
 			}
+			game.setNextPlayer(players, player);
+
 		}
 }
