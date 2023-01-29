@@ -137,7 +137,6 @@ void Game::startTheGame(Game game)
 			}
 			else {
 				dis.showValidationToStart(game, players, player);
-				game.setPlayers(players);
 			}
 			game.setNextPlayer(players, player);
 

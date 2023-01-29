@@ -251,7 +251,6 @@ void Display::showValidationToStart(Game game,queue<Player> &players, Player &pl
 		//set player isValid to true
 		players.front().setValidation(true);
 		player.setValidation(true);
-		game.setPlayers(players);
 		
 		getchar();
 	}
