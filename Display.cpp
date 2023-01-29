@@ -249,7 +249,6 @@ void Display::showValidationToStart(Game game,queue<Player> &players, Player &pl
 		cout << "Wow! You have permission to start the Game! But after others turn..."; // << nextPlayer.getName() << "'s turn..." <<endl;
 		
 		//set player isValid to true
-		players.front().setValidation(true);
 		player.setValidation(true);
 		
 		getchar();
@@ -261,7 +260,7 @@ void Display::showDiceAndPos(Player player, Dice dice)
 	system("CLS");//clear screen
 
 	int diceValue = dice.getValue();
-	printf("%d\n", diceValue);
+	printf("Dice Number = %d\n", diceValue);
 	dice.showDice(diceValue);
 	//int prevPos = player.getCurrentPos();
 	//int currentPos = prevPos + diceValue;
