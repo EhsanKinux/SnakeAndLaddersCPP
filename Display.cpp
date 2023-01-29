@@ -265,6 +265,7 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 	int diceValue = dice.getValue();
 	printf("Dice Number = %d\n", diceValue);
 	dice.showDice(diceValue);
+
 	int prevPos = player.getCurrentPos();
 	int currentPos = prevPos + diceValue;
 
@@ -287,8 +288,9 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 
 
 	//show player's position
-	cout<< "Previous Position: " << player.getPrevPos() << endl
+	cout << "Previous Position: " << player.getPrevPos() << endl
 		<< "Current Position: " << player.getCurrentPos() << endl;
+
 
 	getchar();
 }
@@ -298,7 +300,7 @@ void Display::showDicePrize(Game game, Player &player, Dice dice)
 {
 	system("CLS");//clear screen
 	cout << "WOW!!! You got a prize! so your turn again :)";
-
+	getchar();
 }
 
 
