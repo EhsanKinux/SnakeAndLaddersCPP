@@ -221,7 +221,7 @@ void Display::GetLadders(Game game)
 	cout << "Everything's set... Let's start the game!" << endl;
 	getchar();
 
-	game.startTheGame(game, game.getDimension(), game.getPlayers(), game.getSnakes(), game.getLadders());
+	game.startTheGame(game);
 
 }
 
@@ -249,7 +249,8 @@ void Display::showValidationToStart(Game game,queue<Player> &players, Player &pl
 		cout << "Wow! You have permission to start the Game! But after others turn..."; // << nextPlayer.getName() << "'s turn..." <<endl;
 		
 		//set player isValid to true
-		players.back().setValidation(true);
+		players.front().setValidation(true);
+		player.setValidation(true);
 		game.setPlayers(players);
 		
 		getchar();
