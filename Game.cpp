@@ -36,12 +36,12 @@ void Game::showSnakesPos(map<int, int> Snakes)
 {
 	cout << "[Snakes Positions: {";
 	for (auto pair : Snakes) {
-		 cout<< "(" << pair.first << "," << pair.second << ")";
+		cout << "(" << pair.first << "," << pair.second << ")";
 	}
-	cout << "}]"<<endl<<endl;
+	cout << "}]" << endl << endl;
 }
 
-void Game::showLadderPos(map<int, int> Ladders)
+void Game::showLaddersPos(map<int, int> Ladders)
 {
 	cout << "[Ladders Positions: {";
 	for (auto pair : Ladders) {
@@ -65,7 +65,7 @@ map<int, int> Game::getLadders()
 	return Ladders;
 }
 
-void Game::setPlayers(queue<Player> &players)
+void Game::setPlayers(queue<Player>& players)
 {
 	Players = players;
 }
@@ -99,7 +99,40 @@ bool Game::isLadderExist(int down, int up)
 
 }
 
-Player Game::playerTurn(queue<Player> &players)
+/*check for snakes& ladders in the cells*/
+bool Game::checkForSnakes(Game game, int currentPos, Player& player)
+{
+	bool snakeEncounter = false;
+
+	for (auto pair : game.getSnakes()) {
+		if (currentPos == pair.second) {//if current pos is at the same position as the snake's head
+			currentPos = pair.first;//send player to the tail of the snake
+			player.setCurrentPos(currentPos);
+			///dis.showSnakeEncounter()
+			snakeEncounter = true;
+		}
+	}
+
+	return snakeEncounter;
+}
+
+bool Game::checkForLadders(Game game, int currentPos, Player& player)
+{
+	bool ladderEncounter = false;
+
+	for (auto pair : game.getLadders()) {
+		if (currentPos == pair.first) {//if current pos is at the same position as the bottom of the ladder
+			currentPos = pair.second;//send player to top of the ladder
+			player.setCurrentPos(currentPos);
+			///dis.showLadderEncounter()
+			ladderEncounter = true;
+		}
+	}
+
+	return ladderEncounter;
+}
+
+Player Game::playerTurn(queue<Player>& players)
 {
 	return players.front(); //front player in the queue
 }
@@ -114,8 +147,6 @@ void Game::setNextPlayer(queue<Player>& players, Player& player)
 	setPlayers(players);
 }
 
-
-
 void Game::startTheGame(Game game)
 {
 	system("CLS");//clear screen
@@ -123,22 +154,64 @@ void Game::startTheGame(Game game)
 	Display dis;
 	Player player;
 	queue<Player> players = game.getPlayers();
-		 
+	queue<Player> winners;
+
+
 
 	//continue the game until last player reach the last cell
-	
 
-		while (!players.empty()) {
-			
-			players = game.getPlayers();
-			player = playerTurn(players);
-			if (player.getValidation()) {
-				cout << "You Are valid!" << endl;
+
+	while (!players.empty()) {
+
+		players = game.getPlayers();//get all players
+		player = playerTurn(players);//get first player in the players queue
+
+		if (player.getValidation()) {
+
+			if (!player.checkFinished()) {
+
+				system("CLS");//clear screen
+
+				cout << player.getName() << "'s TURN: " << endl;
+
+				Dice dice;
+				dice.throwDice();
+				if (dice.getValue() != 6) {
+					dis.showDiceAndPos(game, player, dice);
+				}
+				else {//show dice prize 
+					dis.showDicePrize(game, player, dice);
+				}
+
+
 			}
-			else {
-				dis.showValidationToStart(game, players, player);
+			else {//if player has already finished the game
+				continue;
 			}
-			game.setNextPlayer(players, player);
+
+
+
+			///1_if isFinished -> continue
+			///2_else -> dice throw 
+			///2.1_show previous position (current pos)
+			///2.2_change currentPosition to curr + diceVal
+			///2.3_check for ladders and snakes with first pair 
+			///    and change the value of current position to the second pair in the snakes and ladders map.
+			///2.4_if(dice.val() == 6) => don't go to next player
+			///2.5_if(currentPosition > boardlentgh) => player.setIsFinished(true)
+			///2.6_push player to the winners queue
+			///2.7_always show players count
+			///2.8_show snakes & ladders position
+
+
+
+
 
 		}
+		else {//check if the player can enter the game
+			dis.showValidationToStart(game, players, player);
+		}
+		game.setNextPlayer(players, player);
+
+	}
 }
