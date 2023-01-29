@@ -65,9 +65,9 @@ map<int, int> Game::getLadders()
 	return Ladders;
 }
 
-void Game::setPlayers(queue<Player> players)
+void Game::setPlayers(queue<Player> &players)
 {
-	Players = players;
+	this->Players = players;
 }
 
 bool Game::isSnakeExist(int tail, int head)
@@ -99,7 +99,7 @@ bool Game::isLadderExist(int down, int up)
 
 }
 
-Player Game::playerTurn(queue<Player> players , Player player)
+Player Game::playerTurn(queue<Player> &players , Player &player)
 {
 	players = getPlayers();
 
@@ -129,7 +129,8 @@ void Game::startTheGame(Game game ,int boardDimension, queue<Player> players, ma
 				cout << "You Are valid!" << endl;
 			}
 			else {
-				dis.showValidationToStart(game, player);
+				dis.showValidationToStart(game, players, player);
+				game.setPlayers(players);
 			}
 		}
 }

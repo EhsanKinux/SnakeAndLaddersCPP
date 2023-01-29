@@ -230,7 +230,7 @@ void Display::PlayerTurn(Game game)
 }
 
 
-void Display::showValidationToStart(Game game, Player player)
+void Display::showValidationToStart(Game game,queue<Player> &players, Player &player)
 {
 	Dice dice;
 	system("CLS");//clear screen
@@ -249,7 +249,6 @@ void Display::showValidationToStart(Game game, Player player)
 		cout << "Wow! You have permission to start the Game! But after others turn..."; // << nextPlayer.getName() << "'s turn..." <<endl;
 		
 		//set player isValid to true
-		queue<Player> players= game.getPlayers();
 		players.back().setValidation(true);
 		game.setPlayers(players);
 		

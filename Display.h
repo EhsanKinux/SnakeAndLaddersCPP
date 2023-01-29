@@ -15,7 +15,7 @@ public:
 	static void GetLadders(Game game);//unfinished
 	static void PlayerTurn(Game game);
 	static void showDiceAndPos(Player player, Dice dice);
-	static void showValidationToStart(Game game, Player player);
+	static void showValidationToStart(Game game, queue<Player> &players, Player &player);
 	static void showDicePrize(Player player, Dice dice);//after congrats call showDiceAndPos
 	static void showWinner();//unfinished
 

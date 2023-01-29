@@ -16,7 +16,7 @@ public:
 	queue<Player> getPlayers();
 	map<int, int> getSnakes();
 	map<int, int> getLadders();
-	void setPlayers(queue<Player> players);
+	void setPlayers(queue<Player> &players);
 	void setDimension(int rows, int columns);
 	void insertPlayer(Player player);
 	void insertSnake(pair<int, int> snakeTailHead);
@@ -25,7 +25,7 @@ public:
 	void showLadderPos(map<int, int> Ladders);
 	bool isSnakeExist(int tail, int head);
 	bool isLadderExist(int down, int up);
-	Player playerTurn(queue<Player> players , Player player);
+	Player playerTurn(queue<Player> &players , Player &player);
 
 	void startTheGame(Game game, int boardDimension, queue<Player> players, map<int, int> snakes, map<int, int> ladders);
 };
