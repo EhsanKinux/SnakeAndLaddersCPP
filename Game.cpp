@@ -180,9 +180,17 @@ void Game::startTheGame(Game game)
 					dis.showDiceAndPos(game, player, dice);
 				}
 				else {//show dice prize 
-					dis.showDicePrize(game, player, dice);
+					dis.showDicePrize(game, player, dice);///TODO_NOT FINISHED CODING...
 				}
 
+				//if player reaches the end cell
+				if (player.getCurrentPos() >= game.getDimension()) {
+					player.setFinished(true);
+					winners.push(player);
+					players.pop();
+					game.setPlayers(players);
+					continue;//prevent from setNextPlayer
+				}
 
 			}
 			else {//if player has already finished the game
@@ -200,11 +208,9 @@ void Game::startTheGame(Game game)
 			///2.4_if(dice.val() == 6) => don't go to next player
 			///2.5_if(currentPosition > boardlentgh) => player.setIsFinished(true)
 			///2.6_push player to the winners queue
-			///2.7_always show players count
+			///*2.7_always show players count
 			///2.8_show snakes & ladders position
-
-
-
+			///*2.9_DICE PRIZE
 
 
 		}
