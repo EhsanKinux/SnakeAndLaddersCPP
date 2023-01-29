@@ -52,7 +52,7 @@ void Display::GetPlayerNumbers(Game game)
 	int numberOfPlayers;
 
 	do {
-		cout << "Please enter the number of players (Between 1 to 6): ";
+		cout << "Please enter the number of players : ";
 		cin >> numberOfPlayers;
 	} while (numberOfPlayers > 6 && numberOfPlayers < 1);
 
@@ -102,10 +102,10 @@ void Display::GetSnakes(Game game)
 	for (int i = 1; i <= numberOfSnakes; i++) {
 
 		do {
-			cout << "Please Enter the tail of the snake no. " << i << " : ";
+			cout << "Please Enter Tail's position of the snake no. " << i << " : ";
 			cin >> snakeTail;
 
-			cout << "Please Enter the Head of the snake no. " << i << " : ";
+			cout << "Please Enter Head's position of the snake no. " << i << " : ";
 			cin >> snakeHead;
 
 			isSnakeExist = game.isSnakeExist(snakeTail, snakeHead);//check for snake extistence
@@ -169,17 +169,17 @@ void Display::GetLadders(Game game)
 	for (int i = 1; i <= numberOfLadders; i++) {
 
 		do {
-			cout << "Please Enter the tail of the ladder no. " << i << " : ";
+			cout << "Please Enter Bottom's position of the ladder no. " << i << " : ";
 			cin >> ladderDown;
 
-			cout << "Please Enter the Head of the ladder no. " << i << " : ";
+			cout << "Please Enter Top's position of the ladder no. " << i << " : ";
 			cin >> ladderUp;
 
 			isSnakeExist = game.isSnakeExist(ladderDown, ladderUp);//check for snake extistence
 			isLadderExist = game.isLadderExist(ladderDown, ladderUp);//check for ladder extistence
 
 			if (ladderUp <= ladderDown) {
-				cout << "!!! Head of the ladder can't be in a lower position than it's tail !!! Try Again... " << endl;
+				cout << "!!! Top of the ladder can't be in a lower position than it's Bottom !!! Try Again... " << endl;
 			}
 
 			if (isSnakeExist) {
@@ -191,19 +191,19 @@ void Display::GetLadders(Game game)
 			}
 
 			if (ladderDown < 1) {
-				cout << "!!! ladder tail can't be outside of the game board !!! Try Again..." << endl;
+				cout << "!!! ladder Bottom position can't be outside of the game board !!! Try Again..." << endl;
 			}
 
 			if (ladderUp < 2) {
-				cout << "!!! ladder head position can't be less than 2 !!! Try Again..." << endl;
+				cout << "!!! ladder Top position can't be less than 2 !!! Try Again..." << endl;
 			}
 
 			if (ladderDown > game.getDimension()) {
-				cout << "!!! ladder down position can't be bigger than game board !!! Try Again..." << endl;
+				cout << "!!! ladder Bottom position can't be bigger than game board !!! Try Again..." << endl;
 			}
 
 			if (ladderUp > game.getDimension()) {
-				cout << "!!! ladder Up position can't be bigger than game board !!! Try Again..." << endl;
+				cout << "!!! ladder Top position can't be bigger than game board !!! Try Again..." << endl;
 			}
 
 		} while ((ladderUp <= ladderDown) || isSnakeExist || isLadderExist || ladderDown < 1 || ladderUp < 2 || (ladderDown > game.getDimension() || ladderUp > game.getDimension()));
@@ -212,15 +212,16 @@ void Display::GetLadders(Game game)
 		game.insertLadder(pair<int, int>(ladderDown, ladderUp));
 	}
 
-	int i = 1;
-	for (auto pair : game.getLadders()) {
-		cout << "Ladder no. " << i << " => Tail Position: " << pair.first << " | Head Position: " << pair.second << endl;
-		i++;
-	}
+	//show ladders & snakes position
+	cout << endl;
+	game.showSnakesPos(game.getSnakes());
+	game.showLaddersPos(game.getLadders());
 
 	cout << "Everything's set... Let's start the game!" << endl;
 	getchar();
+	getchar();
 
+	//start the game
 	game.startTheGame(game);
 
 }
@@ -230,12 +231,12 @@ void Display::PlayerTurn(Game game)
 }
 
 
-void Display::showValidationToStart(Game game,queue<Player> &players, Player &player)
+void Display::showValidationToStart(Game game, queue<Player>& players, Player& player)
 {
 	Dice dice;
 	system("CLS");//clear screen
 
-	cout << "It's " << player.getName() << "'s turn :)"<<endl;
+	cout << "It's " << player.getName() << "'s turn :) (NOT STARTED YET)" << endl;
 
 	dice.throwDice();
 
@@ -247,30 +248,53 @@ void Display::showValidationToStart(Game game,queue<Player> &players, Player &pl
 	}
 	else {
 		cout << "Wow! You have permission to start the Game! But after others turn..."; // << nextPlayer.getName() << "'s turn..." <<endl;
-		
+
 		//set player isValid to true
 		player.setValidation(true);
-		
+
 		getchar();
 	}
 }
 
-void Display::showDiceAndPos(Player player, Dice dice)
+void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 {
 	system("CLS");//clear screen
+
+	cout << "Player: " << player.getName() << endl;
 
 	int diceValue = dice.getValue();
 	printf("Dice Number = %d\n", diceValue);
 	dice.showDice(diceValue);
-	//int prevPos = player.getCurrentPos();
-	//int currentPos = prevPos + diceValue;
-	//check for ladders and snakes
-	//if(finished player) ... show finished players
+	int prevPos = player.getCurrentPos();
+	int currentPos = prevPos + diceValue;
 
+	//check for ladders and snakes
+	if (game.checkForSnakes(game, currentPos, player)) {
+		currentPos = player.getCurrentPos();
+	}
+	else if (game.checkForLadders(game, currentPos, player)) {
+		currentPos = player.getCurrentPos();
+	}
+
+	//set player positions
+	player.setCurrentPos(currentPos);
+	player.setPrevPos(prevPos);
+
+	//show snakes and ladders position
+	cout << "SNAKES & LADDERS POSITION:" << endl;
+	game.showSnakesPos(game.getSnakes());
+	game.showLaddersPos(game.getLadders());
+
+
+	//show player's position
+	cout<< "Previous Position: " << player.getPrevPos() << endl
+		<< "Current Position: " << player.getCurrentPos() << endl;
+
+	getchar();
 }
 
 
-void Display::showDicePrize(Player player, Dice dice)
+void Display::showDicePrize(Game game, Player &player, Dice dice)
 {
 	system("CLS");//clear screen
 	cout << "WOW!!! You got a prize! so your turn again :)";
