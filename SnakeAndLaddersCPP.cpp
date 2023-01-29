@@ -1,7 +1,17 @@
 
 #include <iostream>
+#include "Display.h";
+#include "Game.h";
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+
+    Game game;
+    Display dis;
+    dis.Start(game);
+
+
+    return 0;
 }
