@@ -127,7 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SnakeAndLaddersCPP.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Dice.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Display.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
