@@ -5,6 +5,7 @@
 #include "Game.h"
 #include <queue>
 #include "Dice.h"
+#include <string>
 
 using namespace std;
 
@@ -368,6 +369,47 @@ void Display::showLadderEncounter(int bottom, int top)
 	cout << "--------------------------------------" << endl;
 }
 
-void Display::showWinner()
+void Display::showWinner(queue<Player> winners)
 {
+	cout << "*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl
+		<< "*# Winner of the game is : " << winners.front().getName() << "#*" << endl
+		<< "*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl;
+
+	cout << endl << "-------------------------------------"<<endl;
+
+	cout << "Players Ranking:" << endl;
+	int i = 1;
+	while (!winners.empty()) {
+		string playerName = winners.front().getName();
+		cout << i << "_ " << playerName<<endl;
+		winners.pop();
+		i++;
+	}
+
+	cout << endl << "-------------------------------------" << endl;
+
+
+	/*ASK if user wants to play again*/
+askAgain:
+	char userInput;
+	cout << "DO YOU WANT TO PLAY A NEW GAME?!(Y/N): ";
+	cin >> userInput;
+
+	Game newGame;
+
+	switch (toupper(userInput)) {
+	case 'Y': //Start a new Game
+		system("CLS");//clear screen
+		Display::Start(newGame);
+		break;
+	case 'N': //Close the game
+		system("CLS");//clear screen
+		cout << "GOOD LUCK! SEE YOU SOON :)" << endl;
+		break;
+	default:
+		system("CLS");//clear screen
+		cout << "Wrong input!!!" << endl;
+		goto askAgain;
+	}
+
 }

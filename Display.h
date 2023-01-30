@@ -19,7 +19,7 @@ public:
 	static void showDicePrize(Game game, Player &player, Dice dice);//after congrats call showDiceAndPos
 	static void showSnakeEncounter(int head, int tail);
 	static void showLadderEncounter(int bottom, int top);
-	static void showWinner();//unfinished
+	static void showWinner(queue<Player> winners);
 
 };
 
