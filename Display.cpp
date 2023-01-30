@@ -299,7 +299,39 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 void Display::showDicePrize(Game game, Player &player, Dice dice)
 {
 	system("CLS");//clear screen
-	cout << "WOW!!! You got a prize! so your turn again :)";
+
+	cout << "Player: " << player.getName() << endl;
+
+	int diceValue = 6;
+	printf("Dice Number = %d\n", diceValue);
+	dice.showDice(6);
+
+	int prevPos = player.getCurrentPos();
+	int currentPos = prevPos + diceValue;
+
+	//check for ladders and snakes
+	if (game.checkForSnakes(game, currentPos, player)) {
+		currentPos = player.getCurrentPos();
+	}
+	else if (game.checkForLadders(game, currentPos, player)) {
+		currentPos = player.getCurrentPos();
+	}
+
+	//set player positions
+	player.setCurrentPos(currentPos);
+	player.setPrevPos(prevPos);
+
+	//show snakes and ladders position
+	cout << "SNAKES & LADDERS POSITION:" << endl;
+	game.showSnakesPos(game.getSnakes());
+	game.showLaddersPos(game.getLadders());
+
+
+	//show player's position
+	cout << "Previous Position: " << player.getPrevPos() << endl
+		<< "Current Position: " << player.getCurrentPos() << endl;
+
+	cout << "WOW!!! You got a prize! So it's your turn again :)";
 	getchar();
 }
 
