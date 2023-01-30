@@ -9,9 +9,7 @@ int main()
 {
 
     Game game;
-    Display dis;
-    dis.Start(game);
-
+    Display::Start(game);
 
     return 0;
 }
