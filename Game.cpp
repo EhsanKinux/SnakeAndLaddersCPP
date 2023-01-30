@@ -185,13 +185,29 @@ void Game::startTheGame(Game game)
 					dis.showDiceAndPos(game, player, dice);
 				}
 				else {//if dice value is 6 => roll prize dice 
-					dis.showDicePrize(game, player, dice);///TODO_NOT FINISHED CODING
+					dis.showDicePrize(game, player, dice);
 					players.front().setCurrentPos(player.getCurrentPos());
 					game.setPlayers(players);
-					continue;
+
+					//player has reached the last cell (finished)
+					if (player.getCurrentPos() >= game.getDimension()) {
+						player.setFinished(true);
+						winners.push(player);
+						players.pop();
+						game.setPlayers(players);
+
+						cout << endl << endl;
+						cout << "*-----------------------------------------------------------------------*" << endl;
+						cout << "|--      Congratulations! You have successfully finished the game     --|" << endl;
+						cout << "*-----------------------------------------------------------------------*";
+
+						getchar();
+					}
+
+					continue;//skip setNextPlayer
 				}
 
-				//if player reaches the end cell
+				//if player has reached the end cell
 				if (player.getCurrentPos() >= game.getDimension()) {
 					player.setFinished(true);
 					winners.push(player);
@@ -210,15 +226,8 @@ void Game::startTheGame(Game game)
 
 			}
 
-
-
-			///TODO:
-			///**1_DICE PRIZE
-			///1.1_update current position
-			///1.2_don't give prize when player has finished the game...
-
-
 		}
+
 		else {//check if the player can enter the game
 			dis.showValidationToStart(game, players, player);
 		}
