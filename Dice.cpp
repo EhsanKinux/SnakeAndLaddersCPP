@@ -11,7 +11,7 @@ void Dice::throwDice()
 	getchar();
 
 	srand(time(0));
-	int diceNumber = (rand()%6) + 1;//generate random dice number
+	int diceNumber = (rand() % 6) + 1;//generate random dice number
 
 	setValue(diceNumber);
 
@@ -20,51 +20,51 @@ void Dice::throwDice()
 
 // Generate dice image in console 
 void Dice::showDice(int n)
-{	
+{
 	string dice;
 	switch (n)
 	{
 	case 1:
 		dice = "\n\t\t\t*---------*\n"
-			   "\t\t\t|         |\n"
-			   "\t\t\t|    O    |\n"
-		       "\t\t\t|         |\n"
-			   "\t\t\t*---------*\n";
+			"\t\t\t|         |\n"
+			"\t\t\t|    O    |\n"
+			"\t\t\t|         |\n"
+			"\t\t\t*---------*\n";
 		break;
 	case 2:
 		dice = "\n\t\t\t*---------*\n"
-			   "\t\t\t|  O      |\n"
-			   "\t\t\t|         |\n"
-	           "\t\t\t|      O  |\n"
-			   "\t\t\t*---------*\n";
+			"\t\t\t|  O      |\n"
+			"\t\t\t|         |\n"
+			"\t\t\t|      O  |\n"
+			"\t\t\t*---------*\n";
 		break;
 	case 3:
 		dice = "\n\t\t\t*---------*\n"
-			   "\t\t\t|  O      |\n"
-			   "\t\t\t|    O    |\n"
-			   "\t\t\t|      O  |\n"
-			   "\t\t\t*---------*\n";
+			"\t\t\t|  O      |\n"
+			"\t\t\t|    O    |\n"
+			"\t\t\t|      O  |\n"
+			"\t\t\t*---------*\n";
 		break;
 	case 4:
 		dice = "\n\t\t\t*---------*\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t|         |\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t*---------*\n";
+			"\t\t\t| O     O |\n"
+			"\t\t\t|         |\n"
+			"\t\t\t| O     O |\n"
+			"\t\t\t*---------*\n";
 		break;
 	case 5:
 		dice = "\n\t\t\t*---------*\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t|    O    |\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t*---------*\n";
+			"\t\t\t| O     O |\n"
+			"\t\t\t|    O    |\n"
+			"\t\t\t| O     O |\n"
+			"\t\t\t*---------*\n";
 		break;
 	case 6:
 		dice = "\n\t\t\t*---------*\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t| O     O |\n"
-			   "\t\t\t*---------*\n";
+			"\t\t\t| O     O |\n"
+			"\t\t\t| O     O |\n"
+			"\t\t\t| O     O |\n"
+			"\t\t\t*---------*\n";
 	}
 	cout << dice;
 }

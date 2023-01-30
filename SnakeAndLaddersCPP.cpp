@@ -8,8 +8,8 @@ using namespace std;
 int main()
 {
 
-    Game game;
-    Display::Start(game);
+	Game game;
+	Display::Start(game);
 
-    return 0;
+	return 0;
 }

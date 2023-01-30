@@ -29,7 +29,7 @@ void Display::Start(Game game)
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
 	cout << "\t\t\t\t\t\t\t%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%" << endl << endl;
 	getchar();//wait for user input
-	
+
 	//go to next page ->
 	GetBoard(game);
 }
@@ -40,41 +40,41 @@ void Display::GetBoard(Game game)
 	int rows, cols;
 
 	do {
-		cout << "\n\n\n\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"<<endl;
-		cout <<       "\t\t\t|                                                           |" << endl;
-		cout <<       "\t\t\t|            Please enter the number of ROWS                |" << endl;
-		cout <<       "\t\t\t|                     !(Minimum : 3)!                       |" << endl;
-		cout <<       "\t\t\t|                                                           |" << endl;
-		cout <<       "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\n\n\n\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\t\t\t|                                                           |" << endl;
+		cout << "\t\t\t|            Please enter the number of ROWS                |" << endl;
+		cout << "\t\t\t|                     !(Minimum : 3)!                       |" << endl;
+		cout << "\t\t\t|                                                           |" << endl;
+		cout << "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
 		cout << "\n\n\t\t\t===> : ";
 		cin >> rows;
 		cout << "\n\n\n\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
-		cout <<       "\t\t\t|                                                           |" << endl;
-		cout <<       "\t\t\t|            Please enter the number of COLUMNS             |" << endl;
-		cout <<       "\t\t\t|                     !(Minimum : 3)!                       |" << endl;
-		cout <<       "\t\t\t|                                                           |" << endl;
-		cout <<       "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\t\t\t|                                                           |" << endl;
+		cout << "\t\t\t|            Please enter the number of COLUMNS             |" << endl;
+		cout << "\t\t\t|                     !(Minimum : 3)!                       |" << endl;
+		cout << "\t\t\t|                                                           |" << endl;
+		cout << "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
 		cout << "\n\n\t\t\t===> : ";
 		cin >> cols;
 
 		if (rows < 3) {
 			cout << "\n\n\n\n\n\n\n\t\t\t\t\t!====================================================!" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t{     The board must contain at least 3 Rows!!!      }" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t!====================================================!" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t{     The board must contain at least 3 Rows!!!      }" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t!====================================================!" << endl;
 		}
 
 		if (cols < 3) {
 			cout << "\n\n\n\n\n\n\n\t\t\t\t\t!====================================================!" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t{     The board must contain at least 3 Rows!!!      }" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t{                                                    }" << endl;
-			cout <<               "\t\t\t\t\t!====================================================!" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t{     The board must contain at least 3 Rows!!!      }" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t{                                                    }" << endl;
+			cout << "\t\t\t\t\t!====================================================!" << endl;
 		}
 	} while (rows < 3 || cols < 3); // at least 3 * 3
 
@@ -101,9 +101,9 @@ void Display::GetPlayerNumbers(Game game)
 		cout << "\n\n\t\t\t===> : ";
 
 		cin >> numberOfPlayers;
-		
+
 		if (numberOfPlayers < 2) {
-			cout << "\n\t\t\t[!!! At least 2 Player is required to play the game !!!]"<<endl;
+			cout << "\n\t\t\t[!!! At least 2 Player is required to play the game !!!]" << endl;
 			getchar();
 			getchar();
 		}
@@ -321,7 +321,7 @@ void Display::showValidationToStart(Game game, queue<Player>& players, Player& p
 	}
 }
 
-void Display::showDiceAndPos(Game game, Player &player, Dice dice)
+void Display::showDiceAndPos(Game game, Player& player, Dice dice)
 {
 	system("CLS");//clear screen
 
@@ -354,7 +354,7 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 
 	//show player's position
 	cout << "\n\t\t\tPrevious Position: " << player.getPrevPos() << endl
-		<< "\n\t\t\tCurrent Position: " << player.getCurrentPos() << endl<<endl;
+		<< "\n\t\t\tCurrent Position: " << player.getCurrentPos() << endl << endl;
 
 	//SHOW OTHER PLAYERS POSITION
 	cout << "\n\t\t\t----------------------------------------------------" << endl;
@@ -373,7 +373,7 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 }
 
 
-void Display::showDicePrize(Game game, Player &player, Dice dice)
+void Display::showDicePrize(Game game, Player& player, Dice dice)
 {
 	system("CLS");//clear screen
 
@@ -408,10 +408,10 @@ void Display::showDicePrize(Game game, Player &player, Dice dice)
 	cout << "\n\t\t\tPrevious Position: " << player.getPrevPos() << endl
 		<< "\n\t\t\tCurrent Position: " << player.getCurrentPos() << endl;
 	if (currentPos > game.getDimension()) {
-		cout << "\n\t\t\t[* YOU GOT 6! But you have already finished the game! *]"<<endl<<endl;
+		cout << "\n\t\t\t[* YOU GOT 6! But you have already finished the game! *]" << endl << endl;
 	}
 	else {
-	cout << "\n\t\t\t[* WOW!!! You got a prize! So it's your turn again :) *]"<<endl<<endl;
+		cout << "\n\t\t\t[* WOW!!! You got a prize! So it's your turn again :) *]" << endl << endl;
 	}
 
 	//SHOW OTHER PLAYERS POSITION
@@ -470,7 +470,7 @@ void Display::showWinner(queue<Player> winners)
 		<< "\t\t\t           Winner is " << winners.front().getName() << endl << endl
 		<< "\t\t\t*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl;
 
-	cout << endl << "\t\t\t-------------------------------------"<<endl;
+	cout << endl << "\t\t\t-------------------------------------" << endl;
 
 	//Display players ranking...
 	cout << "\t\t\tPlayers Ranking:" << endl;
