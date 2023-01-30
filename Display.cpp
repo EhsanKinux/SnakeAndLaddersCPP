@@ -1,6 +1,4 @@
 #include "Display.h"
-#include <stdlib.h>
-#include <cstdio>
 #include <iostream>
 #include "Game.h"
 #include <queue>
@@ -14,10 +12,9 @@ void Display::Start(Game game)
 	system("CLS");//clear screen
 	cout << "Welcome to the game" << endl << "[Press Enter To Start...]" << endl;
 	getchar();//wait for user input
-
+	
 	//go to next page ->
 	GetBoard(game);
-
 }
 
 void Display::GetBoard(Game game)
@@ -56,10 +53,10 @@ void Display::GetPlayerNumbers(Game game)
 		cout << "Please enter the number of players : ";
 		cin >> numberOfPlayers;
 		
-		if (numberOfPlayers < 1) {
+		if (numberOfPlayers < 2) {
 			cout << "[!!! At least 1 Player is required to play the game !!!]"<<endl;
 		}
-	} while (numberOfPlayers < 1);
+	} while (numberOfPlayers < 2);
 
 	GetPlayerNames(game, numberOfPlayers);
 }
