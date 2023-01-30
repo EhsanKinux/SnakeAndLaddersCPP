@@ -162,6 +162,7 @@ void Game::startTheGame(Game game)
 		system("CLS");//clear screen
 
 		if (players.size() < 2) {//only 1 player left
+			player = playerTurn(players);
 			winners.push(player);
 			players.pop();
 			game.setPlayers(players);
