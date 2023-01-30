@@ -161,6 +161,15 @@ void Game::startTheGame(Game game)
 
 		system("CLS");//clear screen
 
+		if (players.size() < 2) {//only 1 player left
+			winners.push(player);
+			players.pop();
+			game.setPlayers(players);
+			break;
+		}
+
+		cout << "COUNT OF PLAYERS : " << players.size() << endl;
+
 		players = game.getPlayers();//get all players
 		player = playerTurn(players);//get first player in the players queue
 
@@ -185,10 +194,10 @@ void Game::startTheGame(Game game)
 					winners.push(player);
 					players.pop();
 					game.setPlayers(players);
-					
+
 					cout << endl << endl;
-					cout << "*-----------------------------------------------------------------------*"<<endl;
-					cout << "|--   	 Congratulations! You have successfully finished the game	   --|"<<endl;
+					cout << "*-----------------------------------------------------------------------*" << endl;
+					cout << "|--    Congratulations! You have successfully finished the game	   --|" << endl;
 					cout << "*-----------------------------------------------------------------------*";
 
 					getchar();
@@ -218,7 +227,13 @@ void Game::startTheGame(Game game)
 		else {//check if the player can enter the game
 			dis.showValidationToStart(game, players, player);
 		}
+
 		game.setNextPlayer(players, player);
 
-	}
+	}//end of while(!player.empty())
+
+
+	Display::showWinner(winners);
+
+
 }
