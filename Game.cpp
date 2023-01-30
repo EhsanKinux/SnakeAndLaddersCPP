@@ -163,6 +163,8 @@ void Game::startTheGame(Game game)
 
 	while (!players.empty()) {
 
+		system("CLS");//clear screen
+
 		players = game.getPlayers();//get all players
 		player = playerTurn(players);//get first player in the players queue
 
@@ -170,7 +172,6 @@ void Game::startTheGame(Game game)
 
 			if (!player.checkFinished()) {
 
-				system("CLS");//clear screen
 
 				cout << player.getName() << "'s TURN: " << endl;
 
@@ -179,8 +180,9 @@ void Game::startTheGame(Game game)
 				if (dice.getValue() != 6) {
 					dis.showDiceAndPos(game, player, dice);
 				}
-				else {//show dice prize 
+				else {//if dice value is 6 => roll prize dice 
 					dis.showDicePrize(game, player, dice);///TODO_NOT FINISHED CODING...
+					continue;//don't change player's turn
 				}
 
 				//if player reaches the end cell
@@ -189,6 +191,14 @@ void Game::startTheGame(Game game)
 					winners.push(player);
 					players.pop();
 					game.setPlayers(players);
+					
+					cout << endl << endl;
+					cout << "*-----------------------------------------------------------------------*"<<endl;
+					cout << "|--   	 Congratulations! You have successfully finished the game	   --|"<<endl;
+					cout << "*-----------------------------------------------------------------------*";
+
+					getchar();
+
 					continue;//prevent from setNextPlayer
 				}
 
@@ -210,7 +220,7 @@ void Game::startTheGame(Game game)
 			///2.6_push player to the winners queue
 			///*2.7_always show players count
 			///2.8_show snakes & ladders position
-			///*2.9_DICE PRIZE
+			///2.9_DICE PRIZE
 
 
 		}
