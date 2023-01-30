@@ -270,10 +270,6 @@ void Display::GetLadders(Game game)
 
 }
 
-void Display::PlayerTurn(Game game)
-{
-}
-
 
 void Display::showValidationToStart(Game game, queue<Player>& players, Player& player)
 {
