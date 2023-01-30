@@ -11,7 +11,7 @@ private:
 	queue<Player> Players;
 	map<int, int> Snakes, Ladders;
 public:
-	Game();//default constructor
+	Game();
 	int getDimension();
 	queue<Player> getPlayers();
 	map<int, int> getSnakes();
