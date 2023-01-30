@@ -12,7 +12,24 @@ using namespace std;
 void Display::Start(Game game)
 {
 	system("CLS");//clear screen
-	cout << "Welcome to the game" << endl << "[Press Enter To Start...]" << endl;
+	cout << endl << endl;
+	cout << "\t\t\t\t\t\t\t%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%              Snake And Ladder Game            %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                    Welcome!                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%              #------------#                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%              |  SinaC0de  |                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%  Created By: |     &      |                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%              | EhsanKinux |                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%              #------------#                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%" << endl << endl;
+	cout << "\n\t\t\t\t\b\b============>>            [Press Enter To Start...] ";
 	getchar();//wait for user input
 
 	//go to next page ->
@@ -26,17 +43,41 @@ void Display::GetBoard(Game game)
 	int rows, cols;
 
 	do {
-		cout << "Please enter the number of ROWS (Minimum : 3) : ";
+		cout << "\n\n\n\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*"<<endl;
+		cout <<       "\t\t\t|                                                           |" << endl;
+		cout <<       "\t\t\t|            Please enter the number of ROWS                |" << endl;
+		cout <<       "\t\t\t|                     !(Minimum : 3)!                       |" << endl;
+		cout <<       "\t\t\t|                                                           |" << endl;
+		cout <<       "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\n\n\t\t\t===> : ";
 		cin >> rows;
-		cout << "Please enter the number of COLUMNS (Minimum : 3) : ";
+		cout << "\n\n\n\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout <<       "\t\t\t|                                                           |" << endl;
+		cout <<       "\t\t\t|            Please enter the number of COLUMNS             |" << endl;
+		cout <<       "\t\t\t|                     !(Minimum : 3)!                       |" << endl;
+		cout <<       "\t\t\t|                                                           |" << endl;
+		cout <<       "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\n\n\t\t\t===> : ";
 		cin >> cols;
 
 		if (rows < 3) {
-			cout << "The board must contain at least 3 Rows!!!" << endl;
+			cout << "\n\n\n\n\n\n\n\t\t\t\t\t!====================================================!" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t{     The board must contain at least 3 Rows!!!      }" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t!====================================================!" << endl;
 		}
 
 		if (cols < 3) {
-			cout << "The board must contain at least 3 Columns!!!" << endl;
+			cout << "\n\n\n\n\n\n\n\t\t\t\t\t!====================================================!" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t{     The board must contain at least 3 Rows!!!      }" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t{                                                    }" << endl;
+			cout <<               "\t\t\t\t\t!====================================================!" << endl;
 		}
 	} while (rows < 3 || cols < 3); // at least 3 * 3
 
