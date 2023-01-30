@@ -151,7 +151,6 @@ void Game::startTheGame(Game game)
 {
 	system("CLS");//clear screen
 
-	Display dis;
 	Player player;
 	queue<Player> players = game.getPlayers();
 	queue<Player> winners;
@@ -182,10 +181,10 @@ void Game::startTheGame(Game game)
 				Dice dice;
 				dice.throwDice();
 				if (dice.getValue() != 6) {
-					dis.showDiceAndPos(game, player, dice);
+					Display::showDiceAndPos(game, player, dice);
 				}
 				else {//if dice value is 6 => roll prize dice 
-					dis.showDicePrize(game, player, dice);
+					Display::showDicePrize(game, player, dice);
 					players.front().setCurrentPos(player.getCurrentPos());
 					game.setPlayers(players);
 
@@ -229,7 +228,7 @@ void Game::startTheGame(Game game)
 		}
 
 		else {//check if the player can enter the game
-			dis.showValidationToStart(game, players, player);
+			Display::showValidationToStart(game, players, player);
 		}
 
 		game.setNextPlayer(players, player);
