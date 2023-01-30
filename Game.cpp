@@ -210,18 +210,10 @@ void Game::startTheGame(Game game)
 
 
 
-			///1_if isFinished -> continue
-			///2_else -> dice throw 
-			///2.1_show previous position (current pos)
-			///2.2_change currentPosition to curr + diceVal
-			///2.3_check for ladders and snakes with first pair 
-			///    and change the value of current position to the second pair in the snakes and ladders map.
-			///2.4_if(dice.val() == 6) => don't go to next player
-			///2.5_if(currentPosition > boardlentgh) => player.setIsFinished(true)
-			///2.6_push player to the winners queue
-			///*2.7_always show players count
-			///2.8_show snakes & ladders position
-			///2.9_DICE PRIZE
+			///TODO:
+			///**1_DICE PRIZE
+			///1.1_update current position
+			///1.2_don't give prize when player has finished the game...
 
 
 		}
