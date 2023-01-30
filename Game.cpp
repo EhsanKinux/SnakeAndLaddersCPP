@@ -185,8 +185,10 @@ void Game::startTheGame(Game game)
 					dis.showDiceAndPos(game, player, dice);
 				}
 				else {//if dice value is 6 => roll prize dice 
-					dis.showDicePrize(game, player, dice);///TODO_NOT FINISHED CODING...
-					continue;//don't change player's turn
+					dis.showDicePrize(game, player, dice);///TODO_NOT FINISHED CODING
+					players.front().setCurrentPos(player.getCurrentPos());
+					game.setPlayers(players);
+					continue;
 				}
 
 				//if player reaches the end cell
