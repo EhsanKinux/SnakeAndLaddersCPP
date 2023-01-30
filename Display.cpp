@@ -103,7 +103,7 @@ void Display::GetPlayerNumbers(Game game)
 		cin >> numberOfPlayers;
 		
 		if (numberOfPlayers < 2) {
-			cout << "\n\t\t\t[!!! At least 1 Player is required to play the game !!!]"<<endl;
+			cout << "\n\t\t\t[!!! At least 2 Player is required to play the game !!!]"<<endl;
 			getchar();
 			getchar();
 		}
