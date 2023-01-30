@@ -156,11 +156,7 @@ void Game::startTheGame(Game game)
 	queue<Player> players = game.getPlayers();
 	queue<Player> winners;
 
-
-
 	//continue the game until last player reach the last cell
-
-
 	while (!players.empty()) {
 
 		system("CLS");//clear screen
@@ -171,8 +167,6 @@ void Game::startTheGame(Game game)
 		if (player.getValidation()) {
 
 			if (!player.checkFinished()) {
-
-
 				cout << player.getName() << "'s TURN: " << endl;
 
 				Dice dice;
@@ -202,9 +196,6 @@ void Game::startTheGame(Game game)
 					continue;//prevent from setNextPlayer
 				}
 
-			}
-			else {//if player has already finished the game
-				continue;
 			}
 
 
