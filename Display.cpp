@@ -26,19 +26,19 @@ void Display::GetBoard(Game game)
 	int rows, cols;
 
 	do {
-		cout << "Please enter the number of ROWS: ";
+		cout << "Please enter the number of ROWS (Minimum : 3) : ";
 		cin >> rows;
-		cout << "Please enter the number of COLUMNS: ";
+		cout << "Please enter the number of COLUMNS (Minimum : 3) : ";
 		cin >> cols;
 
-		if (rows < 1) {
-			cout << "Rows of the board can't be zero or negative!!!" << endl;
+		if (rows < 3) {
+			cout << "The board must contain at least 3 Rows!!!" << endl;
 		}
 
-		if (cols < 2) {
-			cout << "The board must contain at least 2 columns!!!" << endl;
+		if (cols < 3) {
+			cout << "The board must contain at least 3 Columns!!!" << endl;
 		}
-	} while (rows < 1 || cols < 2);
+	} while (rows < 3 || cols < 3); // at least 3 * 3
 
 	//Create a board with rows * cols
 	game.setDimension(rows, cols);
@@ -55,7 +55,11 @@ void Display::GetPlayerNumbers(Game game)
 	do {
 		cout << "Please enter the number of players : ";
 		cin >> numberOfPlayers;
-	} while (numberOfPlayers > 6 && numberOfPlayers < 1);
+		
+		if (numberOfPlayers < 1) {
+			cout << "[!!! At least 1 Player is required to play the game !!!]"<<endl;
+		}
+	} while (numberOfPlayers < 1);
 
 	GetPlayerNames(game, numberOfPlayers);
 }
@@ -331,8 +335,13 @@ void Display::showDicePrize(Game game, Player &player, Dice dice)
 	//show player's position
 	cout << "Previous Position: " << player.getPrevPos() << endl
 		<< "Current Position: " << player.getCurrentPos() << endl;
+	if (currentPos > game.getDimension()) {
+		cout << "[* YOU GOT 6! But you have already finished the game! *]"<<endl;
+	}
+	else {
+	cout << "[* WOW!!! You got a prize! So it's your turn again :) *]"<<endl;
+	}
 
-	cout << "WOW!!! You got a prize! So it's your turn again :)";
 	getchar();
 }
 
