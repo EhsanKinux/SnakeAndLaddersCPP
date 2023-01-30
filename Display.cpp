@@ -335,6 +335,38 @@ void Display::showDicePrize(Game game, Player &player, Dice dice)
 	getchar();
 }
 
+void Display::showSnakeEncounter(int head, int tail)
+{
+	cout << "--------------------------------------" << endl;
+	cout << "[OH NO!! You Were Bitten by an snake!]" << endl << endl;
+
+	printf(" %d\n ", head);
+	cout
+		<< "   $ " << endl
+		<< "    ()" << endl
+		<< "     \\" << endl
+		<< "     /" << endl
+		<< "     \\/  " << tail << endl << endl;
+	cout << "--------------------------------------" << endl;
+
+}
+
+
+void Display::showLadderEncounter(int bottom, int top)
+{
+	cout << "--------------------------------------" << endl;
+	cout << "[Congrats!! You have reached a ladder!]" << endl << endl;
+
+	cout << "  " << top << " " << endl;
+	cout << " " << "|_|" << " " << endl;
+	cout << " " << "|_|" << " " << endl;
+	cout << " " << "|_|" << " " << endl;
+	cout << " " << "|_|" << " " << endl;
+	cout << " " << "|_|" << " " << endl;
+	cout << "  " << bottom << " " << endl;
+
+	cout << "--------------------------------------" << endl;
+}
 
 void Display::showWinner()
 {

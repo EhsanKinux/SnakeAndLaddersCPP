@@ -108,7 +108,7 @@ bool Game::checkForSnakes(Game game, int currentPos, Player& player)
 		if (currentPos == pair.second) {//if current pos is at the same position as the snake's head
 			currentPos = pair.first;//send player to the tail of the snake
 			player.setCurrentPos(currentPos);
-			///dis.showSnakeEncounter()
+			Display::showSnakeEncounter(pair.second, pair.first);
 			snakeEncounter = true;
 		}
 	}
@@ -124,7 +124,7 @@ bool Game::checkForLadders(Game game, int currentPos, Player& player)
 		if (currentPos == pair.first) {//if current pos is at the same position as the bottom of the ladder
 			currentPos = pair.second;//send player to top of the ladder
 			player.setCurrentPos(currentPos);
-			///dis.showLadderEncounter()
+			Display::showLadderEncounter(pair.first, pair.second);
 			ladderEncounter = true;
 		}
 	}

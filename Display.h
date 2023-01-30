@@ -17,6 +17,8 @@ public:
 	static void showDiceAndPos(Game game, Player &player, Dice dice);
 	static void showValidationToStart(Game game, queue<Player>& players, Player& player);
 	static void showDicePrize(Game game, Player &player, Dice dice);//after congrats call showDiceAndPos
+	static void showSnakeEncounter(int head, int tail);
+	static void showLadderEncounter(int bottom, int top);
 	static void showWinner();//unfinished
 
 };
