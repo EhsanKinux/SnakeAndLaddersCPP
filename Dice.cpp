@@ -8,7 +8,7 @@ void Dice::throwDice()
 {
 	/*The Time function is called because the value of seed changes with time
 	 So every time we run the program, a new set of random numbers is generated.*/
-	cout << "Press Enter to roll the dice...";
+	cout << "\n\t\t\tPress Enter to roll the dice...";
 	getchar();
 
 	srand(time(0));
@@ -26,46 +26,46 @@ void Dice::showDice(int n)
 	switch (n)
 	{
 	case 1:
-		dice = "*---------*\n"
-			   "|         |\n"
-			   "|    O    |\n"
-		       "|         |\n"
-			   "*---------*\n";
+		dice = "\n\t\t\t*---------*\n"
+			   "\t\t\t|         |\n"
+			   "\t\t\t|    O    |\n"
+		       "\t\t\t|         |\n"
+			   "\t\t\t*---------*\n";
 		break;
 	case 2:
-		dice = "*---------*\n"
-			   "|  O      |\n"
-			   "|         |\n"
-	           "|      O  |\n"
-			   "*---------*\n";
+		dice = "\n\t\t\t*---------*\n"
+			   "\t\t\t|  O      |\n"
+			   "\t\t\t|         |\n"
+	           "\t\t\t|      O  |\n"
+			   "\t\t\t*---------*\n";
 		break;
 	case 3:
-		dice = "*---------*\n"
-			   "|  O      |\n"
-			   "|    O    |\n"
-			   "|      O  |\n"
-			   "*---------*\n";
+		dice = "\n\t\t\t*---------*\n"
+			   "\t\t\t|  O      |\n"
+			   "\t\t\t|    O    |\n"
+			   "\t\t\t|      O  |\n"
+			   "\t\t\t*---------*\n";
 		break;
 	case 4:
-		dice = "*---------*\n"
-			   "| O     O |\n"
-			   "|         |\n"
-			   "| O     O |\n"
-			   "*---------*\n";
+		dice = "\n\t\t\t*---------*\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t|         |\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t*---------*\n";
 		break;
 	case 5:
-		dice = "*---------*\n"
-			   "| O     O |\n"
-			   "|    O    |\n"
-			   "| O     O |\n"
-			   "*---------*\n";
+		dice = "\n\t\t\t*---------*\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t|    O    |\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t*---------*\n";
 		break;
 	case 6:
-		dice = "*---------*\n"
-			   "| O     O |\n"
-			   "| O     O |\n"
-			   "| O     O |\n"
-			   "*---------*\n";
+		dice = "\n\t\t\t*---------*\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t| O     O |\n"
+			   "\t\t\t*---------*\n";
 	}
 	cout << dice;
 }

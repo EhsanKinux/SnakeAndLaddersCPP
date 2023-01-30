@@ -34,20 +34,20 @@ void Game::insertLadder(pair<int, int> ladderDownUp)
 
 void Game::showSnakesPos(map<int, int> Snakes)
 {
-	cout << "[Snakes Positions: {";
+	cout << "\n\t\t\t[Snakes Positions: {";
 	for (auto pair : Snakes) {
 		cout << "(" << pair.second << "," << pair.first << ")";
 	}
-	cout << "}]" << endl << endl;
+	cout << "}]" << endl;
 }
 
 void Game::showLaddersPos(map<int, int> Ladders)
 {
-	cout << "[Ladders Positions: {";
+	cout << "\n\t\t\t[Ladders Positions: {";
 	for (auto pair : Ladders) {
 		cout << "(" << pair.first << "," << pair.second << ")";
 	}
-	cout << "}]" << endl << endl;
+	cout << "}]" << endl;
 }
 
 queue<Player> Game::getPlayers()
@@ -169,7 +169,7 @@ void Game::startTheGame(Game game)
 			break;
 		}
 
-		cout << "COUNT OF PLAYERS IN GAME : " << players.size() << endl;
+		cout << "\n\t\t\tCOUNT OF PLAYERS IN GAME : " << players.size() << endl;
 
 		players = game.getPlayers();//get all players
 		player = playerTurn(players);//get first player in the players queue
@@ -177,7 +177,7 @@ void Game::startTheGame(Game game)
 		if (player.getValidation()) {
 
 			if (!player.checkFinished()) {
-				cout << player.getName() << "'s TURN: " << endl;
+				cout << "\n\t\t\t" << player.getName() << "'s TURN: " << endl;
 
 				Dice dice;
 				dice.throwDice();
@@ -197,9 +197,9 @@ void Game::startTheGame(Game game)
 						game.setPlayers(players);
 
 						cout << endl << endl;
-						cout << "*-----------------------------------------------------------------------*" << endl;
-						cout << "|--      Congratulations! You have successfully finished the game     --|" << endl;
-						cout << "*-----------------------------------------------------------------------*";
+						cout << "\n\t\t\t*-----------------------------------------------------------------------*" << endl;
+						cout << "\t\t\t|--    Congratulations! You have successfully finished the game	      --|" << endl;
+						cout << "\t\t\t*-----------------------------------------------------------------------*";
 
 						getchar();
 					}
@@ -215,9 +215,9 @@ void Game::startTheGame(Game game)
 					game.setPlayers(players);
 
 					cout << endl << endl;
-					cout << "*-----------------------------------------------------------------------*" << endl;
-					cout << "|--    Congratulations! You have successfully finished the game	   --|" << endl;
-					cout << "*-----------------------------------------------------------------------*";
+					cout << "\n\t\t\t*-----------------------------------------------------------------------*" << endl;
+					cout << "\t\t\t|--    Congratulations! You have successfully finished the game	      --|" << endl;
+					cout << "\t\t\t*-----------------------------------------------------------------------*";
 
 					getchar();
 
