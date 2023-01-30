@@ -6,8 +6,7 @@ using namespace std;
 
 void Dice::throwDice()
 {
-	/*The Time function is called because the value of seed changes with time
-	 So every time we run the program, a new set of random numbers is generated.*/
+
 	cout << "\n\t\t\tPress Enter to roll the dice...";
 	getchar();
 
