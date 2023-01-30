@@ -371,12 +371,14 @@ void Display::showLadderEncounter(int bottom, int top)
 
 void Display::showWinner(queue<Player> winners)
 {
-	cout << "*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl
-		<< "*# Winner of the game is : " << winners.front().getName() << "#*" << endl
-		<< "*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl;
+	//display winner of the game
+	cout << "*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl << endl
+		<< "           Winner is " << winners.front().getName() << endl << endl
+		<< "*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#" << endl;
 
 	cout << endl << "-------------------------------------"<<endl;
 
+	//Display players ranking...
 	cout << "Players Ranking:" << endl;
 	int i = 1;
 	while (!winners.empty()) {
