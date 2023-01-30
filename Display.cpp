@@ -145,11 +145,12 @@ void Display::GetSnakes(Game game)
 	for (int i = 1; i <= numberOfSnakes; i++) {
 
 		do {
-			cout << "Please Enter Tail's position of the snake no. " << i << " : ";
-			cin >> snakeTail;
 
 			cout << "Please Enter Head's position of the snake no. " << i << " : ";
 			cin >> snakeHead;
+
+			cout << "Please Enter Tail's position of the snake no. " << i << " : ";
+			cin >> snakeTail;
 
 			isSnakeExist = game.isSnakeExist(snakeTail, snakeHead);//check for snake extistence
 
@@ -278,6 +279,8 @@ void Display::showValidationToStart(Game game, queue<Player>& players, Player& p
 {
 	Dice dice;
 	system("CLS");//clear screen
+
+	cout << "COUNT OF PLAYERS IN GAME : " << players.size() << endl;
 
 	cout << "It's " << player.getName() << "'s turn :) (NOT STARTED YET)" << endl;
 

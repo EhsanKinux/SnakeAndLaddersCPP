@@ -36,7 +36,7 @@ void Game::showSnakesPos(map<int, int> Snakes)
 {
 	cout << "[Snakes Positions: {";
 	for (auto pair : Snakes) {
-		cout << "(" << pair.first << "," << pair.second << ")";
+		cout << "(" << pair.second << "," << pair.first << ")";
 	}
 	cout << "}]" << endl << endl;
 }
@@ -169,7 +169,7 @@ void Game::startTheGame(Game game)
 			break;
 		}
 
-		cout << "COUNT OF PLAYERS : " << players.size() << endl;
+		cout << "COUNT OF PLAYERS IN GAME : " << players.size() << endl;
 
 		players = game.getPlayers();//get all players
 		player = playerTurn(players);//get first player in the players queue
