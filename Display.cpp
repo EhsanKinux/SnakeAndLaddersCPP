@@ -13,21 +13,21 @@ void Display::Start(Game game)
 	cout << endl << endl;
 	cout << "\t\t\t\t\t\t\t%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
-	cout << "\t\t\t\t\t\t\t%%              Snake And Ladder Game            %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%            Snakes And Ladders Game            %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                    Welcome!                   %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                 #------------#                %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                 |  SinaC0de  |                %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%     Created By: |     &      |                %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                 | EhsanKinux |                %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%                 #------------#                %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
-	cout << "\t\t\t\t\t\t\t%%              #------------#                   %%" << endl;
-	cout << "\t\t\t\t\t\t\t%%              |  SinaC0de  |                   %%" << endl;
-	cout << "\t\t\t\t\t\t\t%%  Created By: |     &      |                   %%" << endl;
-	cout << "\t\t\t\t\t\t\t%%              | EhsanKinux |                   %%" << endl;
-	cout << "\t\t\t\t\t\t\t%%              #------------#                   %%" << endl;
+	cout << "\t\t\t\t\t\t\t%%            [Press Enter To Start...]          %%" << endl;
 	cout << "\t\t\t\t\t\t\t%%                                               %%" << endl;
 	cout << "\t\t\t\t\t\t\t%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%*%" << endl << endl;
-	cout << "\n\t\t\t\t\b\b============>>            [Press Enter To Start...] ";
 	getchar();//wait for user input
 	
 	//go to next page ->
@@ -87,15 +87,24 @@ void Display::GetBoard(Game game)
 
 void Display::GetPlayerNumbers(Game game)
 {
-	system("CLS");//clear screen
 	int numberOfPlayers;
 
 	do {
-		cout << "Please enter the number of players : ";
+		system("CLS");//clear screen
+
+		cout << "\n\n\n\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\t\t\t|                                                           |" << endl;
+		cout << "\t\t\t|            Please enter the number of players :           |" << endl;
+		cout << "\t\t\t|                     !(Minimum : 2)!                       |" << endl;
+		cout << "\t\t\t|                                                           |" << endl;
+		cout << "\t\t\t*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*" << endl;
+		cout << "\n\n\t\t\t===> : ";
+
 		cin >> numberOfPlayers;
 		
 		if (numberOfPlayers < 2) {
 			cout << "[!!! At least 1 Player is required to play the game !!!]"<<endl;
+			getchar();
 		}
 	} while (numberOfPlayers < 2);
 
@@ -104,12 +113,11 @@ void Display::GetPlayerNumbers(Game game)
 
 void Display::GetPlayerNames(Game game, int numberOfPlayers)
 {
-	system("CLS");//clear screen
 
 	string playerName;
 
 	for (int i = 0; i < numberOfPlayers; i++) {
-		cout << "Please enter player no. " << i + 1 << " Name: ";
+		cout << "\n\t\t\tPlease enter player no. " << i + 1 << " Name: ";
 		cin >> playerName;
 		Player player;
 		player.setName(playerName);
@@ -302,7 +310,7 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 {
 	system("CLS");//clear screen
 
-	cout << "Player: " << player.getName() << endl;
+	cout << "[Player: " << player.getName() << " ]" << endl;
 
 	int diceValue = dice.getValue();
 	printf("Dice Number = %d\n", diceValue);
@@ -331,8 +339,20 @@ void Display::showDiceAndPos(Game game, Player &player, Dice dice)
 
 	//show player's position
 	cout << "Previous Position: " << player.getPrevPos() << endl
-		<< "Current Position: " << player.getCurrentPos() << endl;
+		<< "Current Position: " << player.getCurrentPos() << endl<<endl;
 
+	//SHOW OTHER PLAYERS POSITION
+	cout << "----------------------------------------------------" << endl;
+	cout << "           Other Players current position           " << endl << endl;
+	queue<Player> tempPlayers = game.getPlayers();
+	tempPlayers.pop();
+	while (!tempPlayers.empty()) {
+		string playerName = tempPlayers.front().getName();
+		int playerCurrentPos = tempPlayers.front().getCurrentPos();
+		cout << playerName << " : " << playerCurrentPos << endl;
+		tempPlayers.pop();
+	}
+	cout << "----------------------------------------------------" << endl;
 
 	getchar();
 }
@@ -342,7 +362,7 @@ void Display::showDicePrize(Game game, Player &player, Dice dice)
 {
 	system("CLS");//clear screen
 
-	cout << "Player: " << player.getName() << endl;
+	cout << "[Player: " << player.getName() << " ]" << endl;
 
 	int diceValue = 6;
 	printf("Dice Number = %d\n", diceValue);
@@ -373,11 +393,24 @@ void Display::showDicePrize(Game game, Player &player, Dice dice)
 	cout << "Previous Position: " << player.getPrevPos() << endl
 		<< "Current Position: " << player.getCurrentPos() << endl;
 	if (currentPos > game.getDimension()) {
-		cout << "[* YOU GOT 6! But you have already finished the game! *]"<<endl;
+		cout << "[* YOU GOT 6! But you have already finished the game! *]"<<endl<<endl;
 	}
 	else {
-	cout << "[* WOW!!! You got a prize! So it's your turn again :) *]"<<endl;
+	cout << "[* WOW!!! You got a prize! So it's your turn again :) *]"<<endl<<endl;
 	}
+
+	//SHOW OTHER PLAYERS POSITION
+	cout << "----------------------------------------------------" << endl;
+	cout << "           Other Players current position           " << endl << endl;
+	queue<Player> tempPlayers = game.getPlayers();
+	tempPlayers.pop();
+	while (!tempPlayers.empty()) {
+		string playerName = tempPlayers.front().getName();
+		int playerCurrentPos = tempPlayers.front().getCurrentPos();
+		cout << playerName << " : " << playerCurrentPos << endl;
+		tempPlayers.pop();
+	}
+	cout << "----------------------------------------------------" << endl;
 
 	getchar();
 }
